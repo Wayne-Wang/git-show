@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 启用spring mvc 注解 -->
+    <context:annotation-config/>
+    <!-- 设置使用注解的类所在的jar包 -->
+    <context:component-scan base-package="com.wayne"/>
+
+
+    <!--<mvc:annotation-driven>-->
+        <!--<mvc:message-converters>-->
+            <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"-->
+                  <!--p:supportedMediaTypes="*/*">-->
+                <!--<property name="objectMapper">-->
+                    <!--<bean class="com.ai.acodm.base.CustomerObjectMapper"/>-->
+                <!--</property>-->
+            <!--</bean>-->
+        <!--</mvc:message-converters>-->
+    <!--</mvc:annotation-driven>-->
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<bean class="com.ai.acodm.base.interceptor.login.LoginVerifyInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<bean class="com.ai.acodm.base.interceptor.right.RightVerifyInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+    <!-- <mvc:resources location="/views/errorinfo.html" mapping="/errorinfo.html" /> -->
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+    <!-- spring的属性加载器，加载properties文件中的属性 -->
+    <!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> <property name="fileEncoding"
+      value="utf-8" /> 多个PropertyPlaceholderConfigurer，需要设置本属性为true. <property name="ignoreUnresolvablePlaceholders" value="true"
+      /> <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" /> <property name="location" value="classpath*:acodmconfig/*.properties"
+      /> </bean> -->
+    <!--<context:property-placeholder file-encoding="utf-8" location="classpath:/acodmconfig/webenv.properties"/>-->
+
+    <!-- **************************************************************** -->
+    <!-- THYMELEAF-SPECIFIC ARTIFACTS -->
+    <!-- TemplateResolver <- TemplateEngine <- ViewResolver -->
+    <!-- **************************************************************** -->
+    <!--<bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">-->
+        <!--<property name="prefix" value="views/"/>-->
+        <!--<property name="suffix" value=".html"/>-->
+        <!--<property name="templateMode" value="HTML5"/>-->
+        <!--<property name="cacheable" value="false"/>-->
+        <!--<property name="characterEncoding" value="UTF-8"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="templateEngine" class="com.ai.acodm.base.thymeleaf.SpringTemplateEngine">-->
+        <!--<property name="templateResolver" ref="templateResolver"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="thymeleafViewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver">-->
+        <!--<property name="templateEngine" ref="templateEngine"/>-->
+        <!--<property name="characterEncoding" value="UTF-8"/>-->
+        <!--<property name="viewClass" value="com.ai.acodm.base.thymeleaf.ThymeleafView"/>-->
+    <!--</bean>-->
+
+    <!-- spring通知扫描 -->
+    <aop:aspectj-autoproxy/>
+
+</beans>
