@@ -12,6 +12,8 @@
     <context:annotation-config/>
     <!-- 设置使用注解的类所在的jar包 -->
     <context:component-scan base-package="com.wayne"/>
+    <!-- spring通知扫描 -->
+    <!--<aop:aspectj-autoproxy/>-->
 
 
     <!--<mvc:annotation-driven>-->
@@ -36,7 +38,7 @@
     <!--</mvc:interceptors>-->
     <!-- <mvc:resources location="/views/errorinfo.html" mapping="/errorinfo.html" /> -->
 
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>-->
 
     <!-- spring的属性加载器，加载properties文件中的属性 -->
     <!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> <property name="fileEncoding"
@@ -49,13 +51,10 @@
     <!-- THYMELEAF-SPECIFIC ARTIFACTS -->
     <!-- TemplateResolver <- TemplateEngine <- ViewResolver -->
     <!-- **************************************************************** -->
-    <!--<bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">-->
-        <!--<property name="prefix" value="views/"/>-->
-        <!--<property name="suffix" value=".html"/>-->
-        <!--<property name="templateMode" value="HTML5"/>-->
-        <!--<property name="cacheable" value="false"/>-->
-        <!--<property name="characterEncoding" value="UTF-8"/>-->
-    <!--</bean>-->
+    <bean id="templateResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="views/"/>
+        <property name="suffix" value=".html"/>
+    </bean>
 
     <!--<bean id="templateEngine" class="com.ai.acodm.base.thymeleaf.SpringTemplateEngine">-->
         <!--<property name="templateResolver" ref="templateResolver"/>-->
@@ -66,8 +65,5 @@
         <!--<property name="characterEncoding" value="UTF-8"/>-->
         <!--<property name="viewClass" value="com.ai.acodm.base.thymeleaf.ThymeleafView"/>-->
     <!--</bean>-->
-
-    <!-- spring通知扫描 -->
-    <aop:aspectj-autoproxy/>
 
 </beans>
